@@ -8,24 +8,24 @@ def getReleaseRepositoryUrl() {
 
 //你访问远程仓库的账号
 def getRepositoryUsername() {
-    if (hasProperty('USERNAME')) ? USERNAME : ""
+    return hasProperty('USERNAME') ? USERNAME : ""
 }
 
 //你访问远程仓库的密码
 def getRepositoryPassword() {
-    if (hasProperty('PASSWORD')) ? PASSWORD : ""
+    return hasProperty('PASSWORD') ? PASSWORD : ""
 }
 
 def getArtifactId(){
-    if (hasProperty('ARTIFACTID')) ? ARTIFACTID : ""
+    return hasProperty('ARTIFACTID') ? ARTIFACTID : ""
 }
 
-def getRroupName(){
-    if (hasProperty('GROUP')) ? GROUP : ""
+def getGroupName(){
+    return hasProperty('GROUPNAME') ? GROUPNAME : ""
 }
 
 def getVersionName(){
-    if (hasProperty('VERSIONNAME')) ? VERSIONNAME : ""
+    return hasProperty('VERSIONNAME') ? VERSIONNAME : ""
 }
 
 //携带源码上传，包含kt源码
@@ -41,8 +41,6 @@ task sourceJar(type: Jar) {
 }
 
 
-
-
 afterEvaluate { project ->
     publishing {
         //def versionName = project.android.defaultConfig.versionName 当然也可以直接拿build.gradle里面的versionName
@@ -50,11 +48,11 @@ afterEvaluate { project ->
             release(MavenPublication) {
                 artifact sourceJar // 增加上传源码的 task
                 afterEvaluate { artifact(tasks.getByName("bundleReleaseAar")) } //通过依赖生成 aar 包任务
-                groupId = getRroupName()
+                groupId = getGroupName()
                 artifactId = getArtifactId()
                 version = getVersionName()
                 //groupId:artifactId:version
-                //com.github.CMzhizhe:NetWorkSdkKotlin:v1.0.6
+                //例如，com.github.CMzhizhe:NetWorkSdkKotlin:v1.0.6
                 //这里可以认为
                 // groupId = com.github.CMzhizhe
                 // artifactId = NetWorkSdkKotlin

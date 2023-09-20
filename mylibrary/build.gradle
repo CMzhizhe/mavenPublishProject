@@ -1,20 +1,20 @@
 plugins {
-    id 'com.android.application'
+    id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
 }
 
+apply from: rootDir.path + "/gradle-mvn-push.gradle"
+
 android {
-    namespace 'com.example.mavenpublishproject'
+    namespace 'com.firebasetext.mylibrary'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.mavenpublishproject"
-        minSdk 22
+        minSdk 21
         targetSdk 33
-        versionCode 1
-        versionName "1.0"
-
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        versionCode Integer.parseInt(project.VERSIONCODE)
+        versionName project.VERSIONNAME
+        consumerProguardFiles "consumer-rules.pro"
     }
 
     buildTypes {
@@ -33,9 +33,7 @@ android {
 }
 
 dependencies {
-    implementation 'androidx.core:core-ktx:1.7.0'
+    implementation 'androidx.core:core-ktx:1.8.0'
     implementation 'androidx.appcompat:appcompat:1.4.1'
     implementation 'com.google.android.material:material:1.5.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
-    implementation project(":mylibrary")
 }
