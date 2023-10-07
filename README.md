@@ -12,10 +12,15 @@ maven-publish 插件配置
 
 #### 已经完成了什么
 1、配置maven-publish，见github
+<br/>
 2、可以上传源码(包含kt)，见github
+<br/>
 3、默认上传源码注释，见github
+<br/>
 4、sdk含有第三方依赖库，依赖传递，见github
+<br/>
 5、全局gradle配置
+<br/>
 6、上传源代码，传递注释说明
 
 #### 全局gradle配置
